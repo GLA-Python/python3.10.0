@@ -1,4 +1,4 @@
-import re
+
 '''
 Regular Expression is a sequence of characters that forms a search pattern in a String.
 In another words this is scheme for Advance Search operation on string.
@@ -17,9 +17,9 @@ The "re" package provides several methods to actually perform queries on an inpu
 # Import the re module:
 # import re
 
-
+import re
 # 1. search() : Returns a Match object if there is a match anywhere in the string
-st = 'python is the best language'
+st = 'python is the best language python'
 res = re.search('python', st)
 print(res)  # <re.Match object; span=(0, 6), match='python'>
 
@@ -33,7 +33,7 @@ print(res)  # None
 res = re.search('(.*)is the', st)
 print(res)  # <re.Match object; span=(0, 13), match='python is the'>
 
-res = re.search('P|python', st)
+res = re.search('(P|p)ython', st)
 print(res)  # <re.Match object; span=(0, 6), match='python'>
 
 print(res.start())  # start s=index
@@ -106,23 +106,25 @@ print(res)  # 205students5with5score58.5CPI
 
 import re
 
-st = ' python is the best language'
+st = 'python is the best language'
 
 res = re.split(r'\s', st)
-print(res)  # ['', 'python', 'is', 'the', 'best', 'language']
+print(res)  # ['python', 'is', 'the', 'best', 'language']
 
 res = re.split(r'\s', st, 2)
-print(res)  # ['', 'python', 'is the best language']
+print(res)  # ['python', 'is the best language']
 
+res = re.split('[aeiou]', st)
+print(res)  # 
 
 # compile() : Combine a regular expression pattern into pattern objects
 import re
 st = 'python is the best language'
 
-comp = re.compile('best')
+comp = re.compile(st)
 
-print(comp.search(st))  # <re.Match object; span=(14, 18), match='best'>
-print(comp.match(st))  # None
-print(comp.sub('most', st))  # python is the most language
-print(comp.split(st))  # ['python is the ', ' language']
-print(comp.findall(st))  # ['best']
+print(comp.search('best'))  # <re.Match object; span=(14, 18), match='best'>
+print(comp.match('best'))  # None
+print(comp.sub('most', 'more'))  # python is the most language
+print(comp.split(r'\s'))  # ['python is the ', ' language']
+print(comp.findall('best'))  # ['best']
